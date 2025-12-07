@@ -1,0 +1,46 @@
+﻿17. V筺 S?Th玭g (Nam Nh筩 Tr蕁)
+14. Long Ng?(Th玭)
+12. Th莕 B?T.Nh﹏
+10. Th?R蘮
+6. V?L﹎ T. Nh﹏
+5. Rng 
+3. T筽 ho?
+1. D?t萿
+5. Nh苩 t蕋 c?
+3. Th猰  4 ?
+2. Th猰 2 ?& v?kh?
+1. Ti襫 &  1 ?
+T?do
+7.Lo筰 3 x 2 ?(d鋍 - ngang)
+6.Lo筰 2 x 2 ?(d鋍 - ngang)
+5.Lo筰 1 x 2 ?(d鋍 - ngang)
+4.Lo筰 4 x 1 ?(d鋍 - ngang)
+3.Lo筰 3 x 1 ?(d鋍 - ngang)
+2.Lo筰 2 x 1 ?(d鋍 - ngang)
+1.Lo筰 1 x 1 ?(d鋍 - ngang)
+Lêy v?t phèm khi Reset
+Lêy v?t phèm
+L?nh bμi nhi?m v?
+L?c L?nh bμi
+Lêy khi ??y Hμnh trang
+Ch?ch?
+Hu?b?
+Auto
+R-?ng lêy ?? (kh?ng tr? l1i)
+4. Hu?nhi謒 v?
+3. U?th竎 Offline
+2. U?th竎 Online (BCH)
+0. ng im
+Khi kh?ng hoμn thμnh nhi?m v?
+4.  l祄 nhi謒 v?L謓h b礽 PK
+Khi hoμn thμnh 40 nhi?m v?
+Da tau (mo rong)
+Tù d?ng X2 khi
+UT.Online
+UT.Offline
+Gi÷ l1i nv TK >=
+Gi÷ l1i nv KN(tri?u) >=
+Cho phDp hu? chu?i NV
+(khi cêp < 50 && chu?i nhi?m v? < 50)
+Nh?n ?? D· tèu
+Cho ?? D· tèu

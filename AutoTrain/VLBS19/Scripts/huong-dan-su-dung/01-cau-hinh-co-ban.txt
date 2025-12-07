@@ -1,0 +1,39 @@
+PA Auto: HƯỚNG DẪN SỬ DỤNG CẤU HÌNH CƠ BẢN.
+Xin chào các bạn. Trong bài hướng dẫn này tôi sẽ giới thiệu và hướng giản cơ bản các cách cấu hình cơ bản của Auto.
+Đầu tiên, trong thư mục Script của auto có tập tin 00_CONFIG.lua các bạn mở ra sẽ có nội dung như sau:
+
+-- =============================================== --
+-- ====== CAC THONG TIN CAU HINH CHUNG CUA AUTO ==
+-- =============================================== --
+
+-- Che do de bug.
+-- 0: Tat, 1: Mo
+gl_Debug = 0 -- che do debug cua chuong trinh, se hien thi mot so thong tin ra man hinh
+
+-- Cat Item vip vao ruong.
+-- Khi tim duoc item VIP, auto se cat item do vao ruong va tiep tuc loc do
+-- 0: Tat, 1: Mo
+gl_CatDoVaoRuong = 1
+
+-- So luong item toi da moi lan nhan ve truoc khi tien hanh loc. 
+gl_GioiHanSoLuongToiDa = 40
+
+-- Toc do click menu duoc tinh bang mili giay. Min = 5
+-- So cang nho, loc cang nhanh. Luu Y: min la 5, Neu may yeu nen set la 50 tro len
+gl_TocDoClickMenu = 30
+
+-- Quang cao ve auto. 
+-- 0: Tat, 1: Mo
+gl_QuangCao = 0
+
+-- noi dung quang cao
+gl_MessQuangCao = "Ban do cui, ai mua PM (gw5)(jt)(gw5)(jt)(gw5)"
+
+GIẢI THÍCH:
+1. Với gl_Debug. Nếu các bạn set gl_Debug = 1, thì auto sẽ sẽ print ra một số thông tin về thứ tự click menu
+2. Vơi gl_CatDoVaoRuong. Mặc định được set là 1. Có nghĩa là khi auto lọc được một item VIP sẽ tự động tìm đến mở rương và cất item VIP vào rương, sau đó lọc đồ tiếp. nếu các bạn muốn tắt thì chỉ cần set cho gl_CatDoVaoRuong = 0
+3. Với gl_GioiHanSoLuongToiDa. Khi gl_CatDoVaoRuong được set là 1 thì PA auto sẽ tự động tính toán số lượng item cần lấy cho mỗi lần lọc item. Tuy nhiên sẽ giới hạn số lượng nhỏ hơn hoặc bằng giá trị được gán cho gl_GioiHanSoLuongToiDa. Mặc định gl_GioiHanSoLuongToiDa = 40 là giá trị max. các bạn có thể giảm về 10 hoặc 9
+4. Với gl_TocDoClickMenu, PA auto mỗi lần click menu sẽ chờ để game tải menu lên và tiến hành click. gl_TocDoClickMenu là giá trị thời gian chờ trước khi click vào menu được tính bằng mili giây. Mặc định gl_TocDoClickMenu được set là 30 nếu máy có cấu hình thấp bạn nên tăng thời gian lên 40, 50, hoặc 60. Nếu máy bạn thuộc dạng máy chuyên game thì có thể set cho gl_TocDoClickMenu = 5
+5. Với gl_QuangCao, Mặc định gl_QuangCao được set là 0, nếu gl_QuangCao được set là 1 thì cứ sau mỗi 15 phút PA auto sẽ gửi nội dung quảng cáo được chỉ định ở gl_MessQuangCao lên kênh TSTG một lần.
+6. Với gl_MessQuangCao, là nội dung được quảng cáo được đặt trong cập dấu nháy kép ("")
+

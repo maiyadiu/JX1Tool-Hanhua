@@ -1,0 +1,139 @@
+PA Auto: HƯỚNG DẪN SỬ DỤNG CHỨC NĂNG LỌC ĐỒ THÔNG MINH
+
+Chào các bạn, trong bài viết này tôi sẽ hướng dẫn các bạn sử dụng chức năng lọc đồ thông minh của PA Auto sao cho hiệu quả.
+Về cơ bản, PA auto đã có sẳn tất cả các script lọc đồ các bạn chỉ cần chọn script và bấm run để lọc mà không cần phải chỉnh sửa gì thêm. Tuy nhiên, các bạn cũng cần năm rõ nguyên tắc hoạt động của nó để có thể tự cân chỉnh các thông số, giá trị thuộc tính theo ý mình.
+
+Trong bài hướng dẫn này tôi sẽ lấy ví dụ là tôi sẽ cần lọc một cái bao tay hệ Thổ có tên là Thiên Tàm Hộ Uyển.
+
+Bước 1: Tham khảo bản template các ID và giá trị thuộc tính dưới dây:
+--[[ Template thuoc tinh 
+{
+    [43] = 1, -- khong the pha huy
+    [58] = 2, -- bo qua ne tranh
+    [85] = 190, -- sinh luc
+    [89] = 190, -- noi luc
+    [93] = 190, -- the luc
+    [97] = 20, -- suc manh
+    [98] = 20, --than phap
+    [99] = 20, -- sinh khi
+    [100] = 20, -- noi cong
+    [88] = 5, -- phuc hoi sinh luc moi nua giay
+    [92] = 6, -- phuc hoi noi luc moi nua giay
+    [96] = 9, -- phuc hoi the luc moi nua giay
+    [101] = 25, -- khang doc
+    [102] = 25, -- khang hoa
+    [103] = 30, -- khang loi
+    [104] = 25, -- ptvl
+    [105] = 25, -- khang bang
+    [106] = 40, -- tg lam cham
+    [108] = 40, -- tg trung doc
+    [110] = 40, -- tg lam choang
+    [111] = 40, -- toc do di chuyen
+    [113] = 40, -- thoi gian phuc hoi
+    [115] = 30, -- toc do danh (ngoai cong)
+    [116] = 40, -- toc do danh (noi cong)
+    [114] = 20, -- khang tat ca
+    [117] = 20, -- phan don can chien
+    [135] = 1, -- may man %
+    [121] = 50, -- stvl diem (dong an)
+    [122] = 100, -- hoa sat ngoai cong
+    [123] = 100, -- bang sat ngoai cong
+    [124] = 100, -- loi sat sat ngoai cong
+    [125] = 50, -- doc sat ngoai cong
+    [126] = 100, -- stvl % (dong hien)
+    [134] = 13, -- chsttnl
+    [136] = 8, -- hut sinh luc
+    [137] = 8, -- hut noi
+    [139] = 1, -- ky nang cua phai do duoc cong them
+    [166] = 300, -- ti le cong kich chinh xac
+    [168] = 200, -- stvl noi cong
+    [169] = 200, -- bang sat noi cong
+    [170] = 200, -- hoa sat noi cong
+    [171] = 200, -- loi sat noi cong
+    [172] = 50,  -- doc sat noi cong
+}
+--]]
+
+Dựa vào bảng template này thì các bạn có thể thấy Sinh lực có id là 85 - giá trị là 190, Nội lực có id là 89 - giá trị là 190. Cứ như vậy các thuộc tính khác cũng có id và giá trị thuộc tính tương ứng.
+
+Bước 2: Mở chế độ lọc đồ thông minh
+Để mở chế độ lọc đồ thông minh bạn cần phải hiểu rõ item bạn muốn lọc là hệ gì, số dòng thuộc tính cần có là bao nhiêu. Như ví dụ tôi lọc item Thiên Tàm Hộ Uyển hệ Thổ. sẽ có ít nhất 5 dòng thuộc tính bao gồm 3 dòng hiện và 2 dòng ẩn. Như vậy tôi thiết lập lọc đồ thông minh như sau:
+
+gl_LocDoThongMinh = 1
+gl_SoDongVip = 5
+
+Với gl_LocDoThongMinh = 1 có nghĩa là cho auto biết bạn muốn dùng chế độ lọc thông minh
+Với gl_SoDongVip = 5 có nghĩa là 1 item được xem là VIP cần phải có ít nhất là 5 dòng thuộc tính.
+
+Bước 3: Cấu hình Thuộc tính.
+Để cấu hình thuộc tính đúng cho 1 item, bạn cần phải xác định đầy đủ tất cả các thuộc tính có thể xuất hiện trên item đó. VD: Với Thiên Tàm Hộ Uyển hệ Thổ sẽ có các thuộc tính sau xuất hiện trên item:
+    Dòng hiện bao gồm: Không thể phá hủy, sinh lực, nội lục, thể lực, và phục hồi sinh lực.
+    Dòng ẩn bao gồm: Kháng băng, thời gian trúng độc, và chuyển hóa sát thương thành nội lực.
+
+Sau đó tôi dùng api CauHinhThuocTinh để thiết lập các thuộc tính của cái bao tay Thiên Tàm Hộ Uyển hệ Thổ như sau: Dựa vào bảng template id và giá trị thuộc tính tôi cấu hình như sau:
+
+CauHinhThuocTinh({
+    [43] = 1, -- khong the pha huy
+    [85] = 199, -- sinh luc
+    [89] = 199, -- noi luc
+    [93] = 199, -- the luc
+    [88] = 5, -- phuc hoi sinh luc moi nua giay
+    [105] = 25, -- khang bang
+    [108] = 40, -- tg trung doc
+    [134] = 15, -- chsttnl
+})
+
+Lưu ý: Để đảm bảo auto không bỏ qua bất kỳ item VIP nào, bạn cần phải chắc chắn tất cả các thuộc tính của item đều được liệt kê trong API CauHinhThuocTinh
+
+Giải thích: lấy dòng "[85] = 199, -- sinh luc" Làm ví dụ - ở đây: 85 là id của thuộc tính sinh lực, 199 là giá trị ít nhất để được auto xem đó là dòng thuộc tính VIP. như vậy 1 item có sl 199 trở lên thì thuộc tính sinh lực được xem là dòng VIP. cứ như vậy nếu có đủ 5 dòng VIP thì đó là item VIP.
+
+Cấu hình tới đây thì các bạn có thể lọc đồ và yên tâm là sẽ ra được item VIP rồi đó. Tuy nhiên sẽ có các trường hợp được xem là "troll nhau". Ví dụ như Item có Thể lực, nội lực 200, không thể phá hủy -> thì đúng là troll nhau thiệt phải ko? Bước tiếp theo tôi sẽ hướng dẫn các bạn loại bỏ các trường hợp troll nhau này.
+
+Bước 4: Cấu hình các thuộc tính quan trọng, bắt buộc phải có của 1 item.
+Để thực hiện được điều này tôi sử dụng API ThuocTinhBatBuoc để liệt kê các thuộc tính bắt buộc phải có của item, nếu thiếu bất kỳ 1 trong những thuộc tính này thì auto sẽ xem như item này không phải là item VIP và bỏ qua. Tôi xác định item Thiên Tàm Hộ Uyển của tôi phải có sinh lực, nội lực, kháng băng và thời gian trúng độc. Tôi cấu hình như sau: 
+
+ThuocTinhBatBuoc(85,89,105,108) 
+
+Có thể thấy trong API ThuocTinhBatBuoc tôi truyền vào các id của thuộc tính bao gồm: sinh lực, nội lực, kháng băng, và thời gian trúng độc.
+
+Lưu ý: Nếu bạn sử dụng API không đúng cách, thì hoặc là auto sẽ không chạy hoặc là bạn sẽ không bao giờ nhận được bất kỳ item VIP nào vì lúc bạn cấu hình sai API ThuocTinhBatBuoc thì auto sẽ cho rằng tất cả các item đều không phải là đồ VIP.
+
+Ví dụ và cấu hình sai: 
+ThuocTinhBatBuoc(85,89,105,108,) -> dư dấu phẩy ở cuối cùng
+ThuocTinhBatBuoc(85,89,105,108,'') => dư dấu phẩy và chuổi rỗng ''
+ThuocTinhBatBuoc(85,89,105,108,139) => id 139 kỹ năng võ công vốn có không bao giờ xuất hiện ở bao tay.
+
+Tới đây là cơ bản các bạn đã sử dụng chế độ lọc thông minh mà không bao giờ bỏ qua bất kỳ item VIP nào rồi. Tiếp theo là phần cấu hình nâng cao của chế độ lọc thông minh. Nếu bạn là người không rành về công nghệ thì nên bỏ qua bước cấu hình nâng cao này.
+
+Bước 5: Cấu hình lọc đồ thông minh nâng cao -> Thêm bộ lọc mở rộng.
+Trong một số trường hợp các bạn đã cấu hình qua 4 bước để nhận item vip. Tuy nhiên vẫn có trường hợp auto vẫn giữ lại các item không phải là vip. Đó là khi nào? Ví dụ như trong bài hướng dẫn này, ở bước 1 tôi set gl_SoDongVip = 5 tuy nhiên item xuất hiện ra 6 dòng vì có thêm dòng chsttnl. Lúc này sẽ sảy ra một số trường hợp auto giữ lại đồ không phải là vip như sau:
+Các dòng thuộc tính hiện thì bỏ qua vì nó luôn đúng.
+Các dòng thuộc tính ẩn xuất hiện theo thứ tự kiểu như: kháng băng 25, chsttnl 15, tg trúng độc 30 => sai hoặc là tg trúng độc 40, chsttnl 15, kháng băng 20 => sai luôn.
+
+Trong trường hợp này tôi sẽ sử dụng API ThemBoLocMoRong để xử lý. Cấu hình các thông số được truyền vào API như sau:
+
+ThemBoLocMoRong({
+    {134}, -- chsttnl
+    {
+        {85,190}, -- set sinh luc
+        {89,190}, -- set noi luc
+        {93,180}, -- set the luc
+    },
+    6 -- So dong VIP duoc thiet lap lai
+})
+
+Giải thích: 
+    Với dòng 1: "{134}, -- chsttnl" id 134 là id của thộc tính chsttnl. Có nghĩa là bộ lọc này sẽ áp dụng đối với item bất kỳ có thuộc tính chsttnl. Bạn có thể thêm nhiều id thuộc tính. VD như: "{85,89,134} -- sinh luc, noi luc, chsttnl" Có nghĩa là bộ lọc này áp dụng cho item bất kỳ có các thuộc tính sinh lực, nội lực và chsttnl.
+    Với block kế tiếp:
+        {
+            {85,190}, -- set sinh luc
+            {89,190}, -- set noi luc
+            {93,180}, -- set the luc
+        },
+        Là danh sách các id thuộc tính và giá trị thuộc tính được áp dụng vào các danh sách thuộc tính được thêm vào API CauHinhThuocTinh ở bước 3.
+        Giải thích: với dòng "{85,190}, -- set sinh luc" có nghĩa là sinh lực có id 85 sẽ được set lại giá trị là 190. Các dòng kế tiếp cũng tương tự
+    Và với số "6" ở dòng cuối cùng. là số dòng VIP được ap dụng dành cho bộ lọc mở rộng này, thay vì là 5 như thiết lập ban đầu ở bước 2. Dòng này các bạn có thể thêm vào hoặc không thêm vào cũng được.
+
+Như vậy là tới đây tôi đã hướng dẫn xong cách cấu hình chức năng lọc đồ thông minh rồi đó. Các bạn có thể mở file pa_nam_bao_tay_tho.lua ra để xem rõ ràng hơn về cấu trúc của nó nhé. 
+
+Chúc các bạn chơi game vui vẻ.
