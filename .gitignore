@@ -44,3 +44,11 @@ __pycache__/
 *.tmp
 *.temp
 *.log
+
+# Scripts with sensitive information
+*.ps1
+*.bat
+setup_*.ps1
+*修复*.ps1
+*诊断*.ps1
+*验证*.ps1
