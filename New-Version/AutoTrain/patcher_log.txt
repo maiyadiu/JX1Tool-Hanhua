@@ -1,0 +1,73 @@
+﻿=== G4VN自动挂机启动器 ===
+控制台已启用，可以查看调试信息
+日志文件: \\Mac\Home\Downloads\other\JX1_Offline\JX1Tool-Hanhua\New-Version\AutoTrain\patcher_log.txt
+时间: 2025-12-26 11:53:16
+
+idComputer= harddiskSSDZX3KD0WVE614S7HCFMW1
+IDVLBS= 
+Dang Crack VLBS 1.3
+Crack thanh cong
+Original string at 0x46B914: Vo Lam Truyen Ky
+Successfully wrote new string to memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.
+Failed to read process memory.

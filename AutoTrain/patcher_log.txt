@@ -1,0 +1,8 @@
+﻿=== G4VN自动挂机启动器 ===
+控制台已启用，可以查看调试信息
+日志文件: \\Mac\Home\Downloads\other\JX1_Offline\JX1Tool-Hanhua\AutoTrain\patcher_log.txt
+时间: 2025-12-26 14:32:02
+
+idComputer= harddiskSSDZX3KD0WVE614S7HCFMW1
+IDVLBS= 
+idComputer= harddiskSSDZX3KD0WVE614S7HCFMW1

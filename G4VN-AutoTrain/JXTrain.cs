@@ -236,12 +236,14 @@ namespace CrackVLBS
 			{
 				if (!File.Exists(pathAuto))
 				{
+					Console.WriteLine("DEBUG: GetVLBSKey - File not found: " + pathAuto);
 					result = "";
 				}
 				else
 				{
+					Console.WriteLine("DEBUG: GetVLBSKey - Starting process: " + pathAuto);
 					JXTrain.KillProcces("G4VNVLBS.exe");
-					new Process
+					Process process = new Process
 					{
 						StartInfo = 
 						{
@@ -251,39 +253,69 @@ namespace CrackVLBS
 							RedirectStandardOutput = true,
 							RedirectStandardError = true
 						}
-					}.Start();
+					};
+					process.Start();
+					Console.WriteLine("DEBUG: GetVLBSKey - Process started, PID: " + process.Id);
+					
+					// 增加等待时间，从 5秒 增加到 15秒
 					SystemWindow[] array = SystemWindow.FilterToplevelWindows((SystemWindow w) => w.Title == "AutoVLBS 1.9" | w.Title == JXTrain.textDomain);
-					for (int i = 0; i < 100; i++)
+					Console.WriteLine("DEBUG: GetVLBSKey - Waiting for main window (AutoVLBS 1.9 or " + JXTrain.textDomain + ")...");
+					for (int i = 0; i < 300; i++)
 					{
 						array = SystemWindow.FilterToplevelWindows((SystemWindow w) => w.Title == "AutoVLBS 1.9" | w.Title == JXTrain.textDomain);
-						Thread.Sleep(50);
 						if (array.Length != 0)
 						{
+							Console.WriteLine("DEBUG: GetVLBSKey - Main window found! Title: " + array[0].Title);
 							break;
 						}
+						if (i % 20 == 0 && i > 0)
+						{
+							Console.WriteLine("DEBUG: GetVLBSKey - Still waiting for main window... (" + (i * 50 / 1000) + " seconds)");
+						}
+						Thread.Sleep(50);
 					}
 					if (array.Length == 0)
 					{
+						Console.WriteLine("DEBUG: GetVLBSKey - FAILED: Main window not found after 15 seconds");
+						// 列出所有可见窗口以便调试
+						Console.WriteLine("DEBUG: GetVLBSKey - Listing all top-level windows:");
+						foreach (SystemWindow w in SystemWindow.FilterToplevelWindows((SystemWindow w) => true))
+						{
+							if (!string.IsNullOrEmpty(w.Title))
+							{
+								Console.WriteLine("DEBUG: GetVLBSKey - Found window: \"" + w.Title + "\"");
+							}
+						}
+						JXTrain.KillProcces("G4VNVLBS.exe");
 						result = "";
 					}
 					else
 					{
+						Console.WriteLine("DEBUG: GetVLBSKey - Looking for button '§¨ng ký'...");
 						SystemWindow[] array2 = array[0].FilterDescendantWindows(false, (SystemWindow w) => w.Title == "§¨ng ký");
-						for (int j = 0; j < 100; j++)
+						for (int j = 0; j < 200; j++)
 						{
 							array2 = array[0].FilterDescendantWindows(false, (SystemWindow w) => w.Title == "§¨ng ký");
-							Thread.Sleep(50);
 							if (array2.Length != 0)
 							{
+								Console.WriteLine("DEBUG: GetVLBSKey - Button '§¨ng ký' found!");
 								break;
 							}
+							if (j % 20 == 0 && j > 0)
+							{
+								Console.WriteLine("DEBUG: GetVLBSKey - Still waiting for button... (" + (j * 50 / 1000) + " seconds)");
+							}
+							Thread.Sleep(50);
 						}
 						if (array2.Length == 0)
 						{
+							Console.WriteLine("DEBUG: GetVLBSKey - FAILED: Button '§¨ng ký' not found");
+							JXTrain.KillProcces("G4VNVLBS.exe");
 							result = "";
 						}
 						else
 						{
+							Console.WriteLine("DEBUG: GetVLBSKey - Clicking button '§¨ng ký'...");
 							JXTrain.PostMessage(array2[0].HWnd, 513, 1, JXTrain.lParam);
 							Thread.Sleep(50);
 							JXTrain.PostMessage(array2[0].HWnd, 514, 0, JXTrain.lParam);
@@ -291,40 +323,61 @@ namespace CrackVLBS
 							JXTrain.PostMessage(array2[0].HWnd, 513, 1, JXTrain.lParam);
 							Thread.Sleep(50);
 							JXTrain.PostMessage(array2[0].HWnd, 514, 0, JXTrain.lParam);
+							Console.WriteLine("DEBUG: GetVLBSKey - Waiting for 'Dang ky' window...");
 							SystemWindow[] array3 = SystemWindow.FilterToplevelWindows((SystemWindow w) => w.Title == "Dang ky");
-							for (int k = 0; k < 100; k++)
+							for (int k = 0; k < 200; k++)
 							{
 								array3 = SystemWindow.FilterToplevelWindows((SystemWindow w) => w.Title == "Dang ky");
-								Thread.Sleep(50);
 								if (array3.Length != 0)
 								{
+									Console.WriteLine("DEBUG: GetVLBSKey - 'Dang ky' window found!");
 									break;
 								}
+								if (k % 20 == 0 && k > 0)
+								{
+									Console.WriteLine("DEBUG: GetVLBSKey - Still waiting for 'Dang ky' window... (" + (k * 50 / 1000) + " seconds)");
+								}
+								Thread.Sleep(50);
 							}
 							if (array3.Length == 0)
 							{
+								Console.WriteLine("DEBUG: GetVLBSKey - FAILED: 'Dang ky' window not found");
+								JXTrain.KillProcces("G4VNVLBS.exe");
 								result = "";
 							}
 							else
 							{
+								Console.WriteLine("DEBUG: GetVLBSKey - Looking for Edit control...");
 								SystemWindow[] array4 = array3[0].FilterDescendantWindows(false, (SystemWindow w) => w.ClassName == "Edit");
-								for (int l = 0; l < 100; l++)
+								for (int l = 0; l < 200; l++)
 								{
 									array4 = array3[0].FilterDescendantWindows(false, (SystemWindow w) => w.ClassName == "Edit");
-									Thread.Sleep(50);
 									if (array4.Length != 0)
 									{
+										Console.WriteLine("DEBUG: GetVLBSKey - Edit control found! Count: " + array4.Length);
 										break;
 									}
+									if (l % 20 == 0 && l > 0)
+									{
+										Console.WriteLine("DEBUG: GetVLBSKey - Still waiting for Edit control... (" + (l * 50 / 1000) + " seconds)");
+									}
+									Thread.Sleep(50);
 								}
 								if (array4.Length == 0)
 								{
+									Console.WriteLine("DEBUG: GetVLBSKey - FAILED: Edit control not found");
+									JXTrain.KillProcces("G4VNVLBS.exe");
 									result = "";
 								}
 								else
 								{
+									Console.WriteLine("DEBUG: GetVLBSKey - Reading text from Edit control...");
 									string textBoxText = JXTrain.GetTextBoxText(array4[0].HWnd);
 									Console.WriteLine("Raw HWID = " + textBoxText);
+									if (string.IsNullOrEmpty(textBoxText))
+									{
+										Console.WriteLine("DEBUG: GetVLBSKey - WARNING: TextBox text is empty!");
+									}
 									JXTrain.KillProcces("G4VNVLBS.exe");
 									string hwid = JXTrain.GetHWID(textBoxText);
 									Console.WriteLine("Process HWID = " + hwid);
@@ -335,8 +388,10 @@ namespace CrackVLBS
 					}
 				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+				Console.WriteLine("DEBUG: GetVLBSKey - EXCEPTION: " + ex.Message);
+				Console.WriteLine("DEBUG: GetVLBSKey - Stack trace: " + ex.StackTrace);
 				result = "";
 			}
 			return result;

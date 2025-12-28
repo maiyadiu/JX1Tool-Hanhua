@@ -1,0 +1,100 @@
+PA Auto: HƯỚNG DẪN SỬ DỤNG CHỨC NĂNG LỌC ĐỒ THỦ CÔNG
+
+Chào các bạn, trong bài viết này tôi sẽ hướng dẫn các bạn sử dụng chức năng lọc đồ thủ công sao cho hiệu quả.
+
+Trong 1 số trường hợp các bạn không thể sử dụng chức năng lọc đồ thông minh của PA Auto. Ví dụ như lọc các item hoàng kim, hoàng kim môn phái, và lọc các item vũ khí bsnc, lsnc v..v... Lúc này các bạn cần phải sử dụng đến chức năng lọc thủ công của PA Auto.
+
+Bước 1: Tham khảo bản template các ID và giá trị thuộc tính dưới dây:
+--[[ Template thuoc tinh 
+{
+    [43] = 1, -- khong the pha huy
+    [58] = 2, -- bo qua ne tranh
+    [85] = 190, -- sinh luc
+    [89] = 190, -- noi luc
+    [93] = 190, -- the luc
+    [97] = 20, -- suc manh
+    [98] = 20, --than phap
+    [99] = 20, -- sinh khi
+    [100] = 20, -- noi cong
+    [88] = 5, -- phuc hoi sinh luc moi nua giay
+    [92] = 6, -- phuc hoi noi luc moi nua giay
+    [96] = 9, -- phuc hoi the luc moi nua giay
+    [101] = 25, -- khang doc
+    [102] = 25, -- khang hoa
+    [103] = 30, -- khang loi
+    [104] = 25, -- ptvl
+    [105] = 25, -- khang bang
+    [106] = 40, -- tg lam cham
+    [108] = 40, -- tg trung doc
+    [110] = 40, -- tg lam choang
+    [111] = 40, -- toc do di chuyen
+    [113] = 40, -- thoi gian phuc hoi
+    [115] = 30, -- toc do danh (ngoai cong)
+    [116] = 40, -- toc do danh (noi cong)
+    [114] = 20, -- khang tat ca
+    [117] = 20, -- phan don can chien
+    [135] = 1, -- may man %
+    [121] = 50, -- stvl diem (dong an)
+    [122] = 100, -- hoa sat ngoai cong
+    [123] = 100, -- bang sat ngoai cong
+    [124] = 100, -- loi sat sat ngoai cong
+    [125] = 50, -- doc sat ngoai cong
+    [126] = 100, -- stvl % (dong hien)
+    [134] = 13, -- chsttnl
+    [136] = 8, -- hut sinh luc
+    [137] = 8, -- hut noi
+    [139] = 1, -- ky nang cua phai do duoc cong them
+    [166] = 300, -- ti le cong kich chinh xac
+    [168] = 200, -- stvl noi cong
+    [169] = 200, -- bang sat noi cong
+    [170] = 200, -- hoa sat noi cong
+    [171] = 200, -- loi sat noi cong
+    [172] = 50,  -- doc sat noi cong
+}
+--]]
+
+Dựa vào bảng template này thì các bạn có thể thấy Sinh lực có id là 85 - giá trị là 190, Nội lực có id là 89 - giá trị là 190. Cứ như vậy các thuộc tính khác cũng có id và giá trị thuộc tính tương ứng.
+
+Bước 2: Tắt chế độ lọc đồ thông minh.
+Để tắt chế độ lọc đồ thông minh các bạn chỉ cần set: gl_LocDoThongMinh = 0
+Khi các bạn tắt lọc đồ thông minh thì PA Auto sẽ chuyển qua lọc đồ thủ công.
+
+Bước 3: Thêm các set thuộc tính.
+Cũn như trong bài hướng dẫn trước, tôi sử dụng item Thiên Tàm Hộ Uyển hệ Thổ làm ví dụ.
+
+Để thiết lập các set thuộc tính để PA Auto nhận biết đâu là item VIP tôi cần thì tôi sử dụng API ThemSetThuocTinh. Các thêm như sau:
+
+-- Set 1
+ThemSetThuocTinh({
+	[85] = 190, -- sinh luc
+    [89] = 190, -- noi luc
+    [93] = 190, -- the luc
+    [105] = 25, -- khang bang
+    [108] = 40, -- tg trung doc
+})
+
+-- Set 2
+ThemSetThuocTinh({
+	[85] = 180, -- sinh luc
+    [89] = 150, -- noi luc
+    [93] = 100, -- the luc
+    [105] = 25, -- khang bang
+    [108] = 40, -- tg trung doc
+    [134] = 15, -- chsttnl
+})
+
+Như vậy là tôi đã thêm được 2 set thuộc tính được xem là VIP cho cái bao tay Thiên Tàm Hộ Uyển rồi đó. Cứ như vậy các bạn thêm nhiều set thuộc tính khác nhau để chọn cho mình những item vip. Vd như:
+
+-- Set 3
+ThemSetThuocTinh({
+	[85] = 180, -- sinh luc
+    [89] = 150, -- noi luc
+    [43] = 1, -- khong the pha huy
+    [105] = 25, -- khang bang
+    [108] = 40, -- tg trung doc
+    [134] = 15, -- chsttnl
+})
+
+Để xem đầy đủ nội dung của một file script lọc đồ thủ công. Bạn tham khảo nội dung trong các file pa_vk_bsnl.lua
+
+Bài hướng dẫn đến đây là hết. Chúc các bạn chơi game vui vẻ.
